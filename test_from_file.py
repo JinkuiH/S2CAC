@@ -746,7 +746,7 @@ if __name__ =='__main__':
     Inferencer.network = S2CAC(encoder_name=plans['encoder'],in_channels=1,classes=len(plans['annotated_classes_key']),encoder_depth=4)
 
     print('Network loaded')
-    Inferencer.load_checkpoint('model_wight/EMA_checkpoint_latest.pth')
+    Inferencer.load_checkpoint('model_wight/checkpoint_S2CAC.pth')
     print('Model loaded')
     source_folder = 'test_data'
     target_folder = 'test_output'
