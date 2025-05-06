@@ -1,7 +1,7 @@
 
 ## 🧠 Overview
 
-S2CAC is a semi-supervised learning framework for coronary artery calcium (CAC) segmentation in gated non-contrast CT images. The key contributions include:
+This repository provides the PyTorch implementation of S2CAC (Scoring-driven Semi-supervised Coronary Artery Calcium Segmentation), a novel framework that leverages both labeled and unlabeled CT data for accurate coronary artery calcium segmentation.
 
 * **A dual-path hybrid transformer architecture** that combines 3D CNNs and Transformers to jointly predict pixel-level segmentation maps and volume-level CAC scores.
 * **Scoring-driven consistency** between predicted scores and segmentation-derived scores to improve supervision from unlabeled data.
