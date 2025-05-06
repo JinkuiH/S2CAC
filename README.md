@@ -21,9 +21,6 @@ Install all dependencies via:
 pip install -r requirements.txt
 ```
 
-> Python version: 3.8+
-> PyTorch version: 1.10+ (CUDA recommended)
-> Includes nnUNet dependency for preprocessing and data handling.
 
 ---
 
