@@ -7,7 +7,7 @@ S2CAC is a semi-supervised learning framework for coronary artery calcium (CAC) 
 * **Negative Sample Boosting** to better exploit hard negative samples during training.
 
 <p align="center">
-  <img src="imgs\framework.png" width="600px"/>
+  <img src="imgs/framework.png" width="600px"/>
 </p>
 
 ---
