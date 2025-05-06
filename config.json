@@ -1,0 +1,80 @@
+{
+    "plans_name": "CAC_SemiScore_full",
+    
+    "data_preprocessed":"/media/bo/Elements_HERA/jinkui/dataset/nnUNet_preprocessed",
+    "dataset_name": "Dataset011_CAC",
+    "data_identifier": "nnUNetPlans_3d_fullres",
+    
+    "exp_results":"result_ours",
+
+    "preprocessor_name": "DefaultPreprocessor",
+    
+    "encoder": "resnet34_3D",
+    "score_name":"score_volume",
+    
+    "annotated_classes_key": [0,1],
+    "foreground_labels":[1],
+
+    "loss_weight":"no",
+
+    "with_normal":1,
+    "dynamic_loss":1,
+
+    "augmentated": 0,
+
+    "regression": 0,
+    "score_weight":1e-6,
+    
+    "labeled_ratio": 0.95,
+    "consistency": 0.1,
+    "consistency_rampup": 200,
+
+    "batch_size": 2,
+
+    "unlabeled_batch":1,
+    "initial_lr": 1e-2,
+    "weight_decay": 3e-5, 
+    "oversample_foreground_percent": 0.33,
+    "num_iterations_per_epoch": 300,
+    "num_val_iterations_per_epoch": 90,
+    "num_epochs": 500,
+
+    
+    "max": 2000.0,
+    "mean": 250.35702712284433,
+    "median": 214.0,
+    "min": -953.0,
+    "percentile_00_5": -87.0,
+    "percentile_99_5": 834.0,
+    "std": 138.99337127574591,
+    
+    "patch_size": [
+        24,
+        256,
+        256
+    ],
+    "initial_patch_size":[
+        194,
+        289,
+        210
+    ],
+
+    "transpose_forward": [
+        0,
+        1,
+        2
+    ],
+    "transpose_backward": [
+        0,
+        1,
+        2
+    ],
+    
+    "spacing": [
+                3.0,
+                0.369140625,
+                0.369140625
+            ]
+    
+
+}
