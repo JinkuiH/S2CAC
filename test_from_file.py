@@ -716,13 +716,9 @@ if __name__ =='__main__':
 
     # plans = load_json('config.json')
 
-    # source_folder = '/media/bo/Elements_HERA/jinkui/CAC_data/External/external-organized/CT'
+    # source_folder = '/CAC_data/External/external-organized/CT'
     # target_folder = 'results/external-N2'
-    # GT_folder = '/media/bo/Elements_HERA/jinkui/CAC_data/External/external-organized/GT'
-
-    # # source_folder = '/home/jinkui/myProject/001.CAC/S2CAC/External/external-organized/CT'
-    # # target_folder = 'results/external-all-10'
-    # # GT_folder = '/home/jinkui/myProject/001.CAC/S2CAC/External/external-organized/GT'
+    # GT_folder = '/CAC_data/External/external-organized/GT'
     # Inferencer = InferencePreprocessor(plans)
     # print('Inferencer loaded')
     # Inferencer.network = smp.Unet_3D_2branch(encoder_name=plans['encoder'],in_channels=1,classes=len(plans['annotated_classes_key']),encoder_depth=4)
