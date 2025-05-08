@@ -74,6 +74,7 @@ python test_from_file.py
 ```
 
 Segmentations will be saved automatically.
+> PS: You can adjust the patch_size parameter in the config.json file. Based on our experience, increasing the patch_size may sometimes improve the model's performance.
 
 
 
