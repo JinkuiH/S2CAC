@@ -54,7 +54,7 @@ The script will automatically handle semi-supervised learning, consistency regul
 
 ## 🔍 Inference
 
-We provide pretrained model weights.
+We provide pretrained model weights so that you can directly run and test them on your own data.
 
 ### Step 1: Download weights
 
