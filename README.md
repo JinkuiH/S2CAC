@@ -48,8 +48,6 @@ If you have a custom data preprocessing or loading method, modify the function `
 python training_semi_score.py
 ```
 
-The script will automatically handle semi-supervised learning, consistency regularization, and negative sample mining.
-
 ---
 
 ## 🔍 Inference
