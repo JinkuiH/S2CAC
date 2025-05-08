@@ -83,7 +83,7 @@ Segmentations will be saved automatically.
 If you find this work helpful, please consider citing:
 
 ```bibtex
-@article{C2CACPaper2025,
+@article{S2CACPaper2025,
   title={S2CAC: Semi-Supervised Coronary Artery Calcium Segmentation via Scoring-driven Consistency and Negative Sample Boosting},
   author={Jinkui Hao et al.},
   journal={TBD},
