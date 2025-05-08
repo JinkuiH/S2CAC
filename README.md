@@ -5,7 +5,7 @@ This repository provides the PyTorch implementation of S2CAC, a novel framework 
 
 * **A dual-path hybrid transformer architecture** that combines 3D CNNs and Transformers to jointly predict pixel-level segmentation maps and volume-level CAC scores.
 * **Scoring-driven consistency** between predicted scores and segmentation-derived scores to improve supervision from unlabeled data.
-* **Negative Sample Boosting** to better exploit hard negative samples during training.
+* **Negative Sample Boosting** to better exploit negative samples during training.
 
 <p align="center">
   <img src="imgs/framework.jpg" width="600px"/>
