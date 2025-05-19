@@ -3,7 +3,6 @@ batchgenerators>=0.25
 batchgeneratorsv2>=0.2.1
 efficientnet_pytorch>=0.6.3
 hiddenlayer>=0.3
-inplace_abn>=1.1.0
 matplotlib
 nnunetv2>=2.5.1
 numpy
