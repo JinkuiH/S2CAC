@@ -15,9 +15,12 @@ This repository provides the PyTorch implementation of S2CAC, a novel framework 
 
 ## 📦 Environment Setup
 
-Install all dependencies via:
+Create environment and install all dependencies via:
 
 ```bash
+cd S2CAC
+conda create -n S2CAC python=3.9
+conda activate S2CAC
 pip install -r requirements.txt
 ```
 
