@@ -1,5 +1,5 @@
 
-## 🧠 Overview
+## 🔵 Overview
 
 This repository provides the PyTorch implementation of S2CAC, a novel framework that leverages both labeled and unlabeled CT data for accurate coronary artery calcium segmentation.
 
@@ -13,7 +13,7 @@ This repository provides the PyTorch implementation of S2CAC, a novel framework 
 
 ---
 
-## 📦 Environment Setup
+## 🔵 Environment Setup
 
 Create environment and install all dependencies via:
 
@@ -27,7 +27,7 @@ pip install -r requirements.txt
 
 ---
 
-## 📁 Dataset Preparation
+## 🔵 Dataset Preparation
 
 Our method relies on the **nnUNet-style data preprocessing**.
 
