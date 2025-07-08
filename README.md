@@ -42,7 +42,7 @@ If you have a custom data preprocessing or loading method, modify the function `
 
 ---
 
-## 🏋️‍♂️ Training
+## 🔵 Training
 
 1. Adjust the hyperparameters in `config.json`.
 2. Start training:
@@ -53,7 +53,7 @@ python training_semi_score.py
 
 ---
 
-## 🔍 Inference
+## 🔵 Inference
 
 We provide pretrained model weights so that you can directly run and test the model on your own data.
 
@@ -79,7 +79,7 @@ Segmentations will be saved automatically.
 
 
 
-## 📄 Citation
+## 🔵 Citation
 
 If you find this work helpful, please consider citing:
 
@@ -94,7 +94,7 @@ If you find this work helpful, please consider citing:
 
 ---
 
-## 🤝 Acknowledgements
+## 🔵 Acknowledgements
 
 This work partially builds upon the [nnUNet](https://github.com/MIC-DKFZ/nnUNet) project. We thank the original authors for their contribution.
 
