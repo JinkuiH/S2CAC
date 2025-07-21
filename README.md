@@ -24,22 +24,6 @@ cd S2CAC
 pip install -r requirements.txt
 ```
 
-
----
-
-## 🔵 Dataset Preparation
-
-Our method relies on the **nnUNet-style data preprocessing**.
-
-### Option 1: Using nnUNet preprocessing (recommended)
-
-1. Preprocess your dataset using [nnUNet's instructions](https://github.com/MIC-DKFZ/nnUNet).
-2. Update the `data_preprocessed` field in `config.json` to point to the preprocessed data path.
-
-### Option 2: Using your own data pipeline
-
-If you have a custom data preprocessing or loading method, modify the function `get_dataloaders()` in `training_semi_score.py` accordingly.
-
 ---
 
 ## 🔵 Inference
@@ -76,6 +60,22 @@ Segmentations will be saved automatically.
 ```bash
 python training_semi_score.py
 ```
+
+
+---
+
+## 🔵 Dataset Preparation
+
+Our method relies on the **nnUNet-style data preprocessing**.
+
+### Option 1: Using nnUNet preprocessing (recommended)
+
+1. Preprocess your dataset using [nnUNet's instructions](https://github.com/MIC-DKFZ/nnUNet).
+2. Update the `data_preprocessed` field in `config.json` to point to the preprocessed data path.
+
+### Option 2: Using your own data pipeline
+
+If you have a custom data preprocessing or loading method, modify the function `get_dataloaders()` in `training_semi_score.py` accordingly.
 
 ---
 
