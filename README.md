@@ -42,17 +42,6 @@ If you have a custom data preprocessing or loading method, modify the function `
 
 ---
 
-## 🔵 Training
-
-1. Adjust the hyperparameters in `config.json`.
-2. Start training:
-
-```bash
-python training_semi_score.py
-```
-
----
-
 ## 🔵 Inference
 
 We provide pretrained model weights so that you can directly run and test the model on your own data.
@@ -76,6 +65,19 @@ python test_from_file.py
 
 Segmentations will be saved automatically.
 > PS: You can adjust the patch_size parameter in the config.json file. Based on our experience, increasing the patch_size may sometimes improve the model's performance during the inference.
+
+---
+
+## 🔵 Training
+
+1. Adjust the hyperparameters in `config.json`.
+2. Start training:
+
+```bash
+python training_semi_score.py
+```
+
+---
 
 
 
