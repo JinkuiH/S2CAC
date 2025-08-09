@@ -150,7 +150,7 @@ class trainingPlanner(object):
            
             reg_branch = {
                     "classes": len(self.plans['foreground_labels']),          
-                    "pooling": "avg",       # 使用平均池化
+                    "pooling": "avg",       
                     "dropout": 0.2,         
                     "activation": None 
                 }
@@ -196,12 +196,9 @@ class trainingPlanner(object):
             self.was_initialized = True
             
     def weighted_l1_loss(prediction, label, weights):
-        # 计算逐元素的 L1 损失
         l1_loss = torch.abs(prediction - label)
-        # 应用权重
         weighted_loss = l1_loss * weights
-        # 求和或取均值
-        return weighted_loss.mean()  # 或者 weighted_loss.sum()
+        return weighted_loss.mean() 
 
     def save_checkpoint(self, filename: str) -> None:
         if self.local_rank == 0:
@@ -245,13 +242,10 @@ class trainingPlanner(object):
                         'trainer_name': self.__class__.__name__,
                         'inference_allowed_mirroring_axes': self.inference_allowed_mirroring_axes,
                     }
-                    # 获取文件所在的目录和文件名
                     directory, filename = os.path.split(filename)
 
-                    # 给文件名添加 "EMA_" 前缀
                     new_filename = "EMA_" + filename
 
-                    # 拼接成新的完整文件路径
                     new_file_path = os.path.join(directory, new_filename)
                     torch.save(checkpoint, new_file_path)
             else:
@@ -820,23 +814,18 @@ class trainingPlanner(object):
             print("Mean Validation MSD: ", (metrics['foreground_mean']["MSD"]))
 
     def save_results_to_csv(self, results, output_file):
-        # 定义CSV文件的表头
         headers = ['reference_file', 'Agatston_Ref', 'Agatston_Pred']
 
-        # 打开CSV文件准备写入
         with open(output_file, mode='w', newline='') as file:
             writer = csv.writer(file)
             
-            # 写入表头
             writer.writerow(headers)
             
-            # 遍历每个结果项并提取所需字段
             for item in results:
                 reference_file = item['reference_file']
                 agatston_ref = item['metrics'][1]['Agatston_Ref']
                 agatston_pred = item['metrics'][1]['Agatston_Pred']
                 
-                # 写入CSV文件的一行
                 writer.writerow([os.path.basename(reference_file), agatston_ref, agatston_pred])
 
     def train_step(self, batch: dict, batch2: dict, batchN: dict, n_iter, loss_weight) -> dict:
@@ -956,8 +945,7 @@ class trainingPlanner(object):
         #early stopping
         best_dice = -np.inf
         epochs_without_improvement = 0
-        early_stop_patience = 50  # 允许的连续无提升epoch数
-
+        early_stop_patience = 50 
         for epoch in range(self.current_epoch, self.num_epochs):
             index = epoch
             # cost = np.zeros(4, dtype=np.float32)
@@ -983,7 +971,7 @@ class trainingPlanner(object):
             self.print_to_log_file(
                 f"Current learning rate: {np.round(self.optimizer.param_groups[0]['lr'], decimals=5)}")
             # lrs are the same for all workers so we don't need to gather them in case of DDP training
-            loss_weight = float(self.normal_weight)  # 转换为 Python float
+            loss_weight = float(self.normal_weight) 
             self.print_to_log_file(f"Current loss weight for Ctrl: {loss_weight:.5f}")
             
             self.logger.log('lrs', self.optimizer.param_groups[0]['lr'], self.current_epoch)
@@ -1025,7 +1013,6 @@ class trainingPlanner(object):
                 self.logger.log('dice_per_class_or_region', global_dc_per_class, self.current_epoch)
                 self.logger.log('val_losses', loss_here, self.current_epoch)
 
-                # 早停判断逻辑
                 if self.current_epoch > 200:
                     if mean_fg_dice > best_dice:
                         best_dice = mean_fg_dice
@@ -1035,11 +1022,9 @@ class trainingPlanner(object):
                         epochs_without_improvement += 1
                         self.print_to_log_file(f"No improvement in validation dice for {epochs_without_improvement} epochs.")
 
-                    # 触发早停
                     if epochs_without_improvement >= early_stop_patience:
                         self.print_to_log_file(f"Early stopping triggered after {early_stop_patience} epochs without improvement.")
-                        break  # 终止训练循环
-
+                        break  
 
             self.logger.log('epoch_end_timestamps', time(), self.current_epoch)
 
