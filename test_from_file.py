@@ -325,22 +325,6 @@ class InferencePreprocessor(object):
         (predicting many images at once).
         """
 
-        # ########################
-        # # let's store the input arguments so that its clear what was used to generate the prediction
-        # if output_folder is not None:
-        #     my_init_kwargs = {}
-        #     for k in inspect.signature(self.predict_from_files).parameters.keys():
-        #         my_init_kwargs[k] = locals()[k]
-        #     my_init_kwargs = deepcopy(
-        #         my_init_kwargs)  # let's not unintentionally change anything in-place. Take this as a
-        #     recursive_fix_for_json_export(my_init_kwargs)
-        #     maybe_mkdir_p(output_folder)
-        #     save_json(my_init_kwargs, join(output_folder, 'predict_from_raw_data_args.json'))
-
-        #     # we need these two if we want to do things with the predictions like for example apply postprocessing
-        #     save_json(self.dataset_json, join(output_folder, 'dataset.json'), sort_keys=False)
-        #     save_json(self.plans_manager.plans, join(output_folder, 'plans.json'), sort_keys=False)
-        #######################
         print('Getting all files in directory')
         list_of_lists_or_source_folder = self.get_all_files_in_directory(source_folder)
         print(f"Found {len(list_of_lists_or_source_folder)} files")
@@ -394,12 +378,6 @@ class InferencePreprocessor(object):
 
             empty_cache(self.device)
 
-            # Autocast can be annoying
-            # If the device_type is 'cpu' then it's slow as heck on some CPUs (no auto bfloat16 support detection)
-            # and needs to be disabled.
-            # If the device_type is 'mps' then it will complain that mps is not implemented, even if enabled=False
-            # is set. Whyyyyyyy. (this is why we don't make use of enabled=False)
-            # So autocast will only be active if we have a cuda device.
             with torch.autocast(self.device.type, enabled=True) if self.device.type == 'cuda' else dummy_context():
                 assert input_image.ndim == 4, 'input_image must be a 4D np.ndarray or torch.Tensor (c, x, y, z)'
 
@@ -511,21 +489,12 @@ class InferencePreprocessor(object):
         return prediction
     
     def predict_logits_from_preprocessed_data(self, data: torch.Tensor) -> torch.Tensor:
-        """
-        IMPORTANT! IF YOU ARE RUNNING THE CASCADE, THE SEGMENTATION FROM THE PREVIOUS STAGE MUST ALREADY BE STACKED ON
-        TOP OF THE IMAGE AS ONE-HOT REPRESENTATION! SEE PreprocessAdapter ON HOW THIS SHOULD BE DONE!
-
-        RETURNED LOGITS HAVE THE SHAPE OF THE INPUT. THEY MUST BE CONVERTED BACK TO THE ORIGINAL IMAGE SIZE.
-        SEE convert_predicted_logits_to_segmentation_with_correct_shape
-        """
         n_threads = torch.get_num_threads()
         torch.set_num_threads(default_num_processes if default_num_processes < n_threads else n_threads)
         prediction = None
 
 
         prediction = self.predict_sliding_window_return_logits(data).to('cpu')
-
-
 
         if self.verbose: print('Prediction done')
         torch.set_num_threads(n_threads)
@@ -621,16 +590,14 @@ class InferencePreprocessor(object):
         metric_keys = ['Dice', 'IoU', 'HD95', 'MSD', 'Agatston_Ref', 'Agatston_Pred',
                     'FP', 'TP', 'FN', 'TN', 'n_pred', 'n_ref']
 
-        # 初始化每个指标的值列表
         values = {k: [] for k in metric_keys}
 
         for item in metrics['metric_per_case']:
-            m = item['metrics'][1]  # 假设你关心类别1
+            m = item['metrics'][1]  
 
             for k in metric_keys:
                 val = m.get(k, 0)
 
-                # 特殊处理 nan 的情况
                 if k in ['Dice', 'IoU']:
                     val = 1.0 if val != val else val  # nan -> 1.0
                 elif k in ['HD95', 'MSD']:
@@ -638,9 +605,8 @@ class InferencePreprocessor(object):
 
                 values[k].append(val)
 
-        # 计算均值和标准差
         averages = {k: float(np.mean(values[k])) for k in metric_keys}
-        stds = {k: float(np.std(values[k], ddof=1)) for k in metric_keys}  # 样本标准差
+        stds = {k: float(np.std(values[k], ddof=1)) for k in metric_keys}  
 
         return averages, stds
     
@@ -690,23 +656,18 @@ class InferencePreprocessor(object):
         print("Std  Validation MSD: ", stds['MSD'])
 
     def save_results_to_csv(self, results, output_file):
-        # 定义CSV文件的表头
         headers = ['reference_file', 'Agatston_Ref', 'Agatston_Pred']
 
-        # 打开CSV文件准备写入
         with open(output_file, mode='w', newline='') as file:
             writer = csv.writer(file)
             
-            # 写入表头
             writer.writerow(headers)
             
-            # 遍历每个结果项并提取所需字段
             for item in results:
                 reference_file = item['reference_file']
                 agatston_ref = item['metrics'][1]['Agatston_Ref']
                 agatston_pred = item['metrics'][1]['Agatston_Pred']
                 
-                # 写入CSV文件的一行
                 writer.writerow([os.path.basename(reference_file), agatston_ref, agatston_pred])
 
 if __name__ =='__main__':
@@ -714,27 +675,6 @@ if __name__ =='__main__':
     os.environ['MKL_NUM_THREADS'] = '1'
     os.environ['OPENBLAS_NUM_THREADS'] = '1'
 
-    # plans = load_json('config.json')
-
-    # source_folder = '/CAC_data/External/external-organized/CT'
-    # target_folder = 'results/external-N2'
-    # GT_folder = '/CAC_data/External/external-organized/GT'
-    # Inferencer = InferencePreprocessor(plans)
-    # print('Inferencer loaded')
-    # Inferencer.network = smp.Unet_3D_2branch(encoder_name=plans['encoder'],in_channels=1,classes=len(plans['annotated_classes_key']),encoder_depth=4)
-    # print('Network loaded')
-    # Inferencer.load_checkpoint('model_wight/EMA_checkpoint_latest.pth')
-    # print('Model loaded')
-    
-
-    # # Inferencer.predict_from_files(source_folder, target_folder)
-
-    # Inferencer.calculate_Matrics_from_folder({
-    #     'original_data_folder': source_folder,
-    #     'gt_segmentations_folder': GT_folder,
-    #     'validation_output_folder': target_folder
-    # })
-    # print('Done')
     plans = load_json('config.json')
 
     Inferencer = InferencePreprocessor(plans)
