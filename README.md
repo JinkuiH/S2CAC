@@ -1,5 +1,5 @@
 
-## 🔵 Overview
+## S2CAC (MedIA'25)
 
 This repository provides the PyTorch implementation of S2CAC, a novel framework that leverages both labeled and unlabeled CT data for accurate coronary artery calcium segmentation.
 
