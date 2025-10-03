@@ -86,11 +86,13 @@ If you have a custom data preprocessing or loading method, modify the function `
 If you find this work helpful, please consider citing:
 
 ```bibtex
-@article{S2CACPaper2025,
-  title={S2CAC: Semi-Supervised Coronary Artery Calcium Segmentation via Scoring-driven Consistency and Negative Sample Boosting},
-  author={Jinkui Hao et al.},
-  journal={TBD},
-  year={2025}
+@article{hao2025s2cac,
+  title={S2CAC: Semi-supervised coronary artery calcium segmentation via scoring-driven consistency and negative sample boosting},
+  author={Hao, Jinkui and Shah, Nilay S and Zhou, Bo},
+  journal={Medical Image Analysis},
+  pages={103823},
+  year={2025},
+  publisher={Elsevier}
 }
 ```
 
