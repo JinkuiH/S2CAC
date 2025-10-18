@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Paper: S2CAC](https://img.shields.io/badge/Paper-S2CAC-blue)](https://authors.elsevier.com/a/1ltJ-_UzlO2AYH)
 
-This repository provides the PyTorch implementation of **Semi-supervised coronary artery calcium segmentation via scoring-driven consistency and negative sample boosting**, a novel framework that leverages both labeled and unlabeled CT data for accurate coronary artery calcium segmentation.
+This repository provides the PyTorch implementation of **Semi-supervised coronary artery calcium segmentation via scoring-driven consistency and negative sample boosting**, a framework that leverages both labeled and unlabeled CT data for accurate coronary artery calcium segmentation.
 
 * **A dual-path hybrid transformer architecture** that combines 3D CNNs and Transformers to jointly predict pixel-level segmentation maps and volume-level CAC scores.
 * **Scoring-driven consistency** between predicted scores and segmentation-derived scores to improve supervision from unlabeled data.
