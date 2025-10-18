@@ -165,7 +165,7 @@ class Decoder_3D_2BranchVit(nn.Module):
                 x_p.permute(1, 0, 2), A.permute(1, 0, 2)  # (1, n, 320)
             )# 
 
-            A = self.self_attention_layers[i](attn_output)  # 更新A，形状为(n, 320)  #200,3,320
+            A = self.self_attention_layers[i](attn_output)  
             A = A.permute(1, 0, 2)
 
         reg_out = self.reg_head(torch.mean(A, dim=1))
