@@ -1,7 +1,8 @@
 
 ## S2CAC (MedIA'25)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  [![Paper: S2CAC](https://authors.elsevier.com/a/1ltJ-_UzlO2AYH)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Paper: S2CAC](https://img.shields.io/badge/Paper-S2CAC-blue)](https://authors.elsevier.com/a/1ltJ-_UzlO2AYH)
 
 This repository provides the PyTorch implementation of **Semi-supervised coronary artery calcium segmentation via scoring-driven consistency and negative sample boosting**, a novel framework that leverages both labeled and unlabeled CT data for accurate coronary artery calcium segmentation.
 
