@@ -62,6 +62,6 @@ class S2CAC(nn.Module):
         masks = self.segmentation_head(decoder_output)
 
         if self.training:
-            return masks, labels  # 训练模式返回两个值
+            return masks, labels  
         else:
-            return masks          # 评估模式返回一个值
+            return masks          
