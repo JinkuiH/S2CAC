@@ -35,7 +35,7 @@ We provide pretrained model weights so that you can directly run and test the mo
 
 ### Step 1: Download weights
 
-* [Google Drive]([https://drive.google.com/file/d/1a1PPioMvbiPIjjDa__RggQ3QUioJAeBn/view?usp=drive_link](https://drive.google.com/file/d/1a1PPioMvbiPIjjDa__RggQ3QUioJAeBn/view?usp=drive_link))
+* [Google Drive](https://drive.google.com/file/d/1a1PPioMvbiPIjjDa__RggQ3QUioJAeBn/view?usp=drive_link)
 * [Baidu Netdisk](https://pan.baidu.com/s/1De1Vdc0L-N9aHyFhdUDC5w?pwd=far4)
 
 Place the downloaded model weights into the `model_weight/` folder.
